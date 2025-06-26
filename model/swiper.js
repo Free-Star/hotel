@@ -25,7 +25,7 @@
 //   },
 // ];
 
-const images = [
+const baseImages = [
   'https://tdesign.gtimg.com/miniprogram/template/retail/home/v2/banner1.png',
   'https://tdesign.gtimg.com/miniprogram/template/retail/home/v2/banner2.png',
   'https://tdesign.gtimg.com/miniprogram/template/retail/home/v2/banner3.png',
@@ -33,6 +33,8 @@ const images = [
   'https://tdesign.gtimg.com/miniprogram/template/retail/home/v2/banner5.png',
   'https://tdesign.gtimg.com/miniprogram/template/retail/home/v2/banner6.png',
 ];
+
+const images = Array.from({ length: 25 }, (_, i) => baseImages[i % baseImages.length]);
 
 export function genSwiperImageList() {
   return images;

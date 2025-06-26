@@ -1,5 +1,14 @@
 {
-  "pages": ["pages/home/home", "pages/category/index", "pages/cart/index", "pages/usercenter/index"],
+  "pages": [
+    "pages/home/home",
+    "pages/house/list/index",
+    "pages/house/detail/index",
+    "pages/contact/index",
+    "pages/about/index",
+    "pages/category/index",
+    "pages/cart/index",
+    "pages/usercenter/index"
+  ],
   "subpackages": [
     {
       "root": "pages/user",

@@ -1,0 +1,11 @@
+<view class="wrap">
+  <view class="wechat">
+    微信号：{{wechat}}
+    <button size="mini" type="primary" bindtap="copyWechat">复制</button>
+  </view>
+  <view class="phone">
+    <button type="primary" bindtap="call">拨打电话</button>
+  </view>
+  <image class="qr" src="{{qr}}" mode="aspectFill" />
+  <view class="tip">长按保存添加</view>
+</view>
