@@ -1,0 +1,13 @@
+<view class="wrap">
+  <swiper indicator-dots="true" autoplay="true" interval="3000" circular="true">
+    <swiper-item wx:for="{{detail.images}}" wx:key="index">
+      <image src="{{item}}" mode="aspectFill" bindtap="previewImage" />
+    </swiper-item>
+  </swiper>
+  <view class="info">
+    <view class="title">{{detail.title}}</view>
+    <view class="desc">{{detail.desc}}</view>
+    <view class="price">价格：请联系咨询</view>
+    <view class="action" bindtap="contact">立即联系</view>
+  </view>
+</view>

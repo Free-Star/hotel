@@ -1,0 +1,19 @@
+.wrap {
+  padding: 24rpx;
+  text-align: center;
+}
+.qr {
+  width: 200rpx;
+  height: 200rpx;
+  margin-top: 20rpx;
+}
+.tip {
+  font-size: 24rpx;
+  color: #666;
+}
+.wechat {
+  margin-top: 20rpx;
+}
+.phone {
+  margin-top: 20rpx;
+}

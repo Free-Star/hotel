@@ -1,0 +1,9 @@
+<view class="wrap">
+  <view class="text">民宿风格、环境特色、经营理念等文字</view>
+  <view class="contact">
+    微信：hotel123
+    <br />
+    电话：13800138000
+  </view>
+  <image wx:for="{{images}}" wx:key="index" class="pic" src="{{item}}" mode="aspectFill" />
+</view>

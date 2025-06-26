@@ -1,0 +1,13 @@
+<view class="list">
+  <view
+    class="item"
+    wx:for="{{list}}"
+    wx:key="id"
+    data-id="{{item.id}}"
+    bindtap="handleTap"
+  >
+    <image class="thumb" src="{{item.image}}" mode="aspectFill" />
+    <view class="title">{{item.title}}</view>
+    <view class="desc">{{item.desc}}</view>
+  </view>
+</view>

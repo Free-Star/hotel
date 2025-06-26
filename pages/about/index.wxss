@@ -1,0 +1,17 @@
+.wrap {
+  padding: 24rpx;
+}
+.text {
+  font-size: 28rpx;
+  color: #333;
+}
+.contact {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+.pic {
+  width: 100%;
+  height: 200rpx;
+  margin-top: 20rpx;
+}

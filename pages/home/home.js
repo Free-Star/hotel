@@ -1,13 +1,10 @@
 import { fetchHome } from '../../services/home/home';
-import { fetchGoodsList } from '../../services/good/fetchGoods';
-import Toast from 'tdesign-miniprogram/toast/index';
+import { fetchHouseList } from '../../services/house/house';
 
 Page({
   data: {
     imgSrcs: [],
-    tabList: [],
-    goodsList: [],
-    goodsListLoadStatus: 0,
+    houseList: [],
     pageLoading: false,
     current: 1,
     autoplay: true,
@@ -17,13 +14,9 @@ Page({
     swiperImageProps: { mode: 'scaleToFill' },
   },
 
-  goodListPagination: {
+  houseListPagination: {
     index: 0,
-    num: 20,
-  },
-
-  privateData: {
-    tabIndex: 0,
+    num: 24,
   },
 
   onShow() {
@@ -32,12 +25,6 @@ Page({
 
   onLoad() {
     this.init();
-  },
-
-  onReachBottom() {
-    if (this.data.goodsListLoadStatus === 0) {
-      this.loadGoodsList();
-    }
   },
 
   onPullDownRefresh() {
@@ -54,72 +41,32 @@ Page({
     this.setData({
       pageLoading: true,
     });
-    fetchHome().then(({ swiper, tabList }) => {
+    fetchHome().then(({ swiper }) => {
       this.setData({
-        tabList,
         imgSrcs: swiper,
         pageLoading: false,
       });
-      this.loadGoodsList(true);
+      this.loadHouseList();
     });
   },
 
-  tabChangeHandle(e) {
-    this.privateData.tabIndex = e.detail;
-    this.loadGoodsList(true);
+  async loadHouseList() {
+    const list = await fetchHouseList();
+    this.setData({
+      houseList: list,
+    });
   },
 
-  onReTry() {
-    this.loadGoodsList();
-  },
 
-  async loadGoodsList(fresh = false) {
-    if (fresh) {
-      wx.pageScrollTo({
-        scrollTop: 0,
-      });
-    }
-
-    this.setData({ goodsListLoadStatus: 1 });
-
-    const pageSize = this.goodListPagination.num;
-    let pageIndex = this.privateData.tabIndex * pageSize + this.goodListPagination.index + 1;
-    if (fresh) {
-      pageIndex = 0;
-    }
-
-    try {
-      const nextList = await fetchGoodsList(pageIndex, pageSize);
-      this.setData({
-        goodsList: fresh ? nextList : this.data.goodsList.concat(nextList),
-        goodsListLoadStatus: 0,
-      });
-
-      this.goodListPagination.index = pageIndex;
-      this.goodListPagination.num = pageSize;
-    } catch (err) {
-      this.setData({ goodsListLoadStatus: 3 });
-    }
-  },
-
-  goodListClickHandle(e) {
-    const { index } = e.detail;
-    const { spuId } = this.data.goodsList[index];
+  houseClickHandle(e) {
+    const { id } = e.currentTarget.dataset;
     wx.navigateTo({
-      url: `/pages/goods/details/index?spuId=${spuId}`,
-    });
-  },
-
-  goodListAddCartHandle() {
-    Toast({
-      context: this,
-      selector: '#t-toast',
-      message: '点击加入购物车',
+      url: `/pages/house/detail/index?id=${id}`,
     });
   },
 
   navToSearchPage() {
-    wx.navigateTo({ url: '/pages/goods/search/index' });
+    wx.navigateTo({ url: '/pages/house/list/index' });
   },
 
   navToActivityDetail({ detail }) {
